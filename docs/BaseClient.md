@@ -1,44 +1,55 @@
-# BaseClient Class
+# BaseClient
 
-## Introduction
+## Overview
 
-The `BaseClient` class serves as an abstract base for building exchange-specific client classes. It defines a common interface and a set of functionalities that are essential for interacting with various cryptocurrency exchange APIs.
-
-## Table of Contents
-
-1. [Constructor](#constructor)
-2. [Abstract Methods](#abstract-methods)
-   - [handleRateLimiting](./BaseClient.handleRateLimiting.md)
-   - [handleError](./BaseClient.handleError.md)
-   - [signRequest](./BaseClient.signRequest.md)
-   - [apiRequest](./BaseClient.apiRequest.md)
+- **Class Definition**: `BaseClient` is defined as a class intended to provide a template for all exchange-specific classes in cryptocurrency exchange interactions.
 
 ## Constructor
 
-The constructor initializes the `BaseClient` with necessary credentials like `apiKey` API key and `secret`. It throws an error if an attempt is made to instantiate `BaseClient` directly, as it is designed to be an abstract class.
-
-```javascript
-
-  /**
-   * Constructor for the BaseClient class.
-   * @param {string} apiKey - The API key for the exchange.
-   * @param {string} secret - The secret key for the exchange.
-   */
-  constructor(apiKey, secret) {
-    if (this.constructor === BaseClient) {
-      throw new Error(
-        "BaseClient is an abstract class and cannot be instantiated directly."
-      );
-    }
-    this.apiKey = apiKey;
-    this.secret = secret;
-    // Initialize other properties and rate limit handling mechanisms
-  }
-
-```
+- **Purpose**: Initializes a new instance of the `BaseClient` class.
+- **Parameters**:
+  - `apiKey`: A string representing the API key for the exchange.
+  - `secret`: A string representing the secret key for the exchange.
+- **Implementation**:
+  - Checks if `BaseClient` is being instantiated directly and throws an error if so, enforcing that `BaseClient` is an abstract class.
 
 ## Abstract Methods
 
-`BaseClient` includes several abstract methods that must be implemented by any derived class. These methods cover a wide range of functionalities, from rate limiting and error handling to specific API interactions like fetching tickers, creating orders, and more.
+These methods are declared but not implemented in `BaseClient`. They must be implemented in any subclass extending `BaseClient`.
 
-For detailed information on each method, refer to the respective documentation linked in the Table of Contents.
+1. **`handleRateLimiting(response)`**:
+
+   - **Parameter**: `response`, an object from the API request.
+   - **Purpose**: Intended to handle rate limiting specific to the exchange.
+   - Throws an error indicating that it must be implemented in derived classes.
+
+2. **`handleError(error)`**:
+
+   - **Parameter**: `error`, an object from the API request.
+   - **Purpose**: Designed to handle errors from the API response.
+   - Throws an error if not implemented in derived classes.
+
+3. **`signRequest(params)`**:
+
+   - **Parameter**: `params`, the parameters of the request that need to be signed.
+   - **Returns**: A string representing the signed parameters.
+   - **Purpose**: To handle exchange-specific request signing.
+   - Throws an error if not implemented in derived classes.
+
+4. **`apiRequest(endpoint, method, parameters, headers)`**:
+   - **Parameters**:
+     - `endpoint`: The API endpoint.
+     - `method`: The HTTP method (e.g., GET, POST).
+     - `parameters`: The parameters for the request.
+     - `headers`: The headers for the request.
+   - **Returns**: A promise that resolves to the response from the exchange API.
+   - **Purpose**: To make an API request.
+   - Throws an error if not implemented in derived classes.
+
+## Exporting
+
+- The `BaseClient` class is exported for use in other modules.
+
+## Summary
+
+`BaseClient` class is well-structured for its intended purpose as an abstract base class.
