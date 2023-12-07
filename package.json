@@ -1,14 +1,14 @@
 {
-  "name": "tsf-baseclient",
-  "version": "0.1.0-alpha",
-  "description": "The `tsf-baseclient` serves as an abstract base for building exchange-specific clients. It defines a common interface and a set of functionalities that are essential for interacting with various cryptocurrency exchange APIs.",
+  "name": "ccxl-baseclient",
+  "version": "0.1.0",
+  "description": "The `ccxl-baseclient` serves as an abstract base for building exchange-specific clients. It defines a common interface and a set of functionalities that are essential for interacting with various cryptocurrency exchange APIs.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/astitvsingh/tsf-baseclient.git"
+    "url": "git+https://github.com/astitvsingh/ccxl-baseclient.git"
   },
   "keywords": [
     "Common",
@@ -32,7 +32,10 @@
   "author": "Astitv Singh <https://github.com/astitvsingh>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/astitvsingh/tsf-baseclient/issues"
+    "url": "https://github.com/astitvsingh/ccxl-baseclient/issues"
   },
-  "homepage": "https://github.com/astitvsingh/tsf-baseclient#readme"
+  "homepage": "https://github.com/astitvsingh/ccxl-baseclient#readme",
+  "directories": {
+    "doc": "docs"
+  }
 }
