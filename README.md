@@ -1,130 +1,55 @@
-# BaseClient Class
+# BaseClient
 
-## Introduction
+## Overview
 
-The `BaseClient` class serves as an abstract base for building exchange-specific client classes. It defines a common interface and a set of functionalities that are essential for interacting with various cryptocurrency exchange APIs.
-
-## Table of Contents
-
-1. [Constructor](#constructor)
-2. [Abstract Methods](#abstract-methods)
-   - [handleRateLimiting](#handleratelimiting-method)
-     - [Description](#handleratelimiting-description)
-     - [Parameters](#handleratelimiting-parameters)
-     - [Usage](#handleratelimiting-usage)
-     - [Implementation](#handleratelimiting-implementation)
-   - [handleError](#handleerror-method)
-     - [Description](#handleerror-description)
-     - [Parameters](#handleerror-parameters)
-     - [Usage](#handleerror-usage)
-     - [Implementation](#handleerror-implementation)
-   - [signRequest](#signrequest-method)
-     - [Description](#signrequest-description)
-     - [Parameters](#signrequest-parameters)
-     - [Usage](#signrequest-usage)
-     - [Implementation](#signrequest-implementation)
-   - [apiRequest](#apirequest-method)
-     - [Description](#apirequest-description)
-     - [Parameters](#apirequest-parameters)
-     - [Usage](#apirequest-usage)
-     - [Implementation](#apirequest-implementation)
+- **Class Definition**: `BaseClient` is defined as a class intended to provide a template for all exchange-specific classes in cryptocurrency exchange interactions.
 
 ## Constructor
 
-The constructor initializes the `BaseClient` with necessary credentials like `apiKey` API key and `secret`. It throws an error if an attempt is made to instantiate `BaseClient` directly, as it is designed to be an abstract class.
-
-```javascript
-
-  /**
-   * Constructor for the BaseClient class.
-   * @param {string} apiKey - The API key for the exchange.
-   * @param {string} secret - The secret key for the exchange.
-   */
-  constructor(apiKey, secret) {
-    if (this.constructor === BaseClient) {
-      throw new Error(
-        "BaseClient is an abstract class and cannot be instantiated directly."
-      );
-    }
-    this.apiKey = apiKey;
-    this.secret = secret;
-    // Initialize other properties and rate limit handling mechanisms
-  }
-
-```
+- **Purpose**: Initializes a new instance of the `BaseClient` class.
+- **Parameters**:
+  - `apiKey`: A string representing the API key for the exchange.
+  - `secret`: A string representing the secret key for the exchange.
+- **Implementation**:
+  - Checks if `BaseClient` is being instantiated directly and throws an error if so, enforcing that `BaseClient` is an abstract class.
 
 ## Abstract Methods
 
-`BaseClient` includes several abstract methods that must be implemented by any derived class. These methods cover a wide range of common functionalities like `handleRateLimiting` and `handleError` (error handling), `signRequest` and `apiRequest`.
+These methods are declared but not implemented in `BaseClient`. They must be implemented in any subclass extending `BaseClient`.
 
-### handleRateLimiting Method
+1. **`handleRateLimiting(response)`**:
 
-#### handleRateLimiting Description
+   - **Parameter**: `response`, an object from the API request.
+   - **Purpose**: Intended to handle rate limiting specific to the exchange.
+   - Throws an error indicating that it must be implemented in derived classes.
 
-`handleRateLimiting` is an abstract method in `BaseClient` designed to manage API rate limits imposed by the exchange. Derived classes must implement this method to handle rate limiting effectively, ensuring uninterrupted API interactions.
+2. **`handleError(error)`**:
 
-#### handleRateLimiting Parameters
+   - **Parameter**: `error`, an object from the API request.
+   - **Purpose**: Designed to handle errors from the API response.
+   - Throws an error if not implemented in derived classes.
 
-- `response` (object): The response object from the API request, which may contain rate limit information.
+3. **`signRequest(params)`**:
 
-#### handleRateLimiting Usage
+   - **Parameter**: `params`, the parameters of the request that need to be signed.
+   - **Returns**: A string representing the signed parameters.
+   - **Purpose**: To handle exchange-specific request signing.
+   - Throws an error if not implemented in derived classes.
 
-This method is typically called within the `apiRequest` method of derived classes after each API response is received.
+4. **`apiRequest(endpoint, method, parameters, headers)`**:
+   - **Parameters**:
+     - `endpoint`: The API endpoint.
+     - `method`: The HTTP method (e.g., GET, POST).
+     - `parameters`: The parameters for the request.
+     - `headers`: The headers for the request.
+   - **Returns**: A promise that resolves to the response from the exchange API.
+   - **Purpose**: To make an API request.
+   - Throws an error if not implemented in derived classes.
 
-#### handleRateLimiting Implementation
+## Exporting
 
-Derived classes should analyze the `response` object to determine if rate limiting is in effect and implement a strategy (like retrying or delaying subsequent requests) accordingly.
+- The `BaseClient` class is exported for use in other modules.
 
-### handleError Method
+## Summary
 
-#### handleError Description
-
-`handleError` is an abstract method in `BaseClient` designed to manage API rate limits imposed by the exchange. Derived classes must implement this method to handle rate limiting effectively, ensuring uninterrupted API interactions.
-
-#### handleError Parameters
-
-- `response` (object): The response object from the API request, which may contain rate limit information.
-
-#### handleError Usage
-
-This method is typically called within the `apiRequest` method of derived classes after each API response is received.
-
-#### handleError Implementation
-
-Derived classes should analyze the `response` object to determine if rate limiting is in effect and implement a strategy (like retrying or delaying subsequent requests) accordingly.
-
-### signRequest Method
-
-#### signRequest Description
-
-`signRequest` is an abstract method in `BaseClient` designed to manage API rate limits imposed by the exchange. Derived classes must implement this method to handle rate limiting effectively, ensuring uninterrupted API interactions.
-
-#### signRequest Parameters
-
-- `response` (object): The response object from the API request, which may contain rate limit information.
-
-#### signRequest Usage
-
-This method is typically called within the `apiRequest` method of derived classes after each API response is received.
-
-#### signRequest Implementation
-
-Derived classes should analyze the `response` object to determine if rate limiting is in effect and implement a strategy (like retrying or delaying subsequent requests) accordingly.
-
-### apiRequest Method
-
-#### apiRequest Description
-
-`apiRequest` is an abstract method in `BaseClient` designed to manage API rate limits imposed by the exchange. Derived classes must implement this method to handle rate limiting effectively, ensuring uninterrupted API interactions.
-
-#### apiRequest Parameters
-
-- `response` (object): The response object from the API request, which may contain rate limit information.
-
-#### apiRequest Usage
-
-This method is typically called within the `apiRequest` method of derived classes after each API response is received.
-
-#### apiRequest Implementation
-
-Derived classes should analyze the `response` object to determine if rate limiting is in effect and implement a strategy (like retrying or delaying subsequent requests) accordingly.
+`BaseClient` class is well-structured for its intended purpose as an abstract base class.
